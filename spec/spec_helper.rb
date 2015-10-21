@@ -35,12 +35,14 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.before do
-    allow(Gems).to receive(:versions) do |*args|
-      fail "stub called: Gems.versions(#{args.map(&:inspect) * ','})"
-    end
+    if Object.const_defined?(:Gems)
+      allow(Gems).to receive(:versions) do |*args|
+        fail "stub called: Gems.versions(#{args.map(&:inspect) * ','})"
+      end
 
-    allow(Gems).to receive(:info) do |*args|
-      fail "stub called: Gems.info(#{args.map(&:inspect) * ','})"
+      allow(Gems).to receive(:info) do |*args|
+        fail "stub called: Gems.info(#{args.map(&:inspect) * ','})"
+      end
     end
 
     allow(Gem::Specification).to receive(:find_by_name) do |*args|
