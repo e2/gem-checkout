@@ -212,7 +212,7 @@ module Gem
             info['number'] == version
           end
 
-          fail Error::NoSuchGem, "Could not find #{name} on rubygems.org" unless version
+          fail Error::NoSuchGem, "Could not find #{name} at #{version} on rubygems.org (yanked gem?)" unless version
           Gem::Checkout.logger.debug "Found info matching gem version #{@version}"
           OpenStruct.new(version)
         end
