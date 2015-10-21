@@ -36,6 +36,26 @@ RSpec.describe Gem::Checkout::Repository::GitHub do
         expect { subject }.to raise_error(described_class::Error::BadURI::NoProjectName)
       end
     end
+
+    context 'with a dashed repo name' do
+      let(:uri) { URI.parse('https://github.com/foo/bar-baz') }
+      let(:expected) { URI.parse('https://github.com/foo/bar-baz.git') }
+
+      it 'uses the correct url' do
+        allow(Gem::Checkout::Repository::Git).to receive(:new).with(expected)
+        subject
+      end
+    end
+
+    context 'with various allowed characters' do
+      let(:uri) { URI.parse('https://github.com/foo-_./bar-_.') }
+      let(:expected) { URI.parse('https://github.com/foo-_./bar-_..git') }
+
+      it 'uses the correct url' do
+        allow(Gem::Checkout::Repository::Git).to receive(:new).with(expected)
+        subject
+      end
+    end
   end
 
   describe '#clone' do

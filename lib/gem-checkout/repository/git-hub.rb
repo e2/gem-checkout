@@ -27,8 +27,8 @@ module Gem
           uri.fragment = nil
           uri = URI.parse(uri.to_s)
 
+          m = /(?<org>[[:alnum:]_.-]+)\/(?<project>[[:alnum:]_.-]+)/.match(uri.path)
 
-          m = /(?<org>[[:alnum:]]+)\/(?<project>[[:alnum:]]+)/.match(uri.path)
           fail Error::BadURI::NoProjectName unless m
           org = m[:org]
           project = m[:project]
