@@ -1,3 +1,4 @@
+require 'gem-checkout/logger'
 require 'gem-checkout/process'
 require 'gem-checkout/repository'
 
