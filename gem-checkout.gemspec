@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "gem-checkout"
-  s.version = '0.0.1'
+  s.version = '0.0.3'
   s.authors = ["Cezary Baginski"]
   s.email = ["cezary@chronomantic.net"]
 
@@ -13,7 +13,10 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/e2/gem-checkout"
   s.license = "MIT"
 
-  s.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  s.files = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{(?:^(?:test|spec|features)/)|(?:^(?:Gemfile|Guardfile|Rakefile|.+\.gemspec|\.travis.yml|\.gitignore|\.rspec)$)})
+  end
+  STDERR.puts s.files * "\n"
   s.add_dependency "gems", "~> 0.8"
   s.add_development_dependency "bundler", "~> 1.10"
 end
