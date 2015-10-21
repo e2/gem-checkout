@@ -40,6 +40,7 @@ module Gem
         end
 
         def get_tag_ref(tag)
+          Gem::Checkout.logger.debug "Looking up tag: #{tag.inspect}"
           Gem::Checkout.logger.debug "Getting tags from : #{uri.to_s}"
           output = Process.capture('git', 'ls-remote', '--tags', uri.to_s)
           tag_info = output.split("\n")

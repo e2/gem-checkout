@@ -98,6 +98,7 @@ module Gem
       end
 
       def initialize(name, version=nil)
+        Gem::Checkout.logger.debug "Gathering infor about #{name} (#{version || 'latest'})"
         object = Spec.info(name, version)
 
         @name = name

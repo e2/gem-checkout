@@ -213,7 +213,7 @@ module Gem
           end
 
           fail Error::NoSuchGem, "Could not find #{name} on rubygems.org" unless version
-          Gem::Checkout.logger.debug "Found matching gem version info"
+          Gem::Checkout.logger.debug "Found info matching gem version #{@version}"
           OpenStruct.new(versions.first)
         end
 
