@@ -26,6 +26,7 @@ module Gem
 
         def clone(options)
           dir = options[:directory]
+          Gem::Checkout.logger.debug "Cloning: #{uri.to_s}"
           Process.run('git', 'clone', uri.to_s, dir)
         rescue Process::Error => ex
           fail Error::CloneFailed, "Failed to clone #{uri.to_s} (#{ex.message})"
@@ -38,6 +39,7 @@ module Gem
         end
 
         def get_tag_ref(tag)
+          Gem::Checkout.logger.debug "Getting tags from : #{uri.to_s}"
           output = Process.capture('git', 'ls-remote', '--tags', uri.to_s)
           tag_info = output.split("\n")
           matching = tag_info.select { |details| details =~ /refs\/tags\/#{tag}$/}
