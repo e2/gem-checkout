@@ -17,15 +17,13 @@ will checkout the GitHub source code (into the current dir) for the `nenv` gem a
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```sh
 gem install gem-checkout
 ```
 
 ## Usage
 
-Proof of concept right now, so open issues and/or PRs for improvements.
+Proof of concept right now, so check or open issues and/or PRs for improvements.
 
 Options:
 
@@ -42,9 +40,13 @@ The version of the gem to you want to hack on - the repo and revision will be di
 
 (If you don't provide this option, the latest version will be used).
 
+## Troubleshooting
+
+Run with the `-d 0` option to see what's going on.
+
 ## FAQ
 
-None yet, so open an issue...
+None yet, so open issues and ask for improvements/features ...
 
 
 ## Development
