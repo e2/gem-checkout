@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "gem-checkout"
-  s.version = '0.0.4'
+  s.version = '0.0.5'
   s.authors = ["Cezary Baginski"]
   s.email = ["cezary@chronomantic.net"]
 
