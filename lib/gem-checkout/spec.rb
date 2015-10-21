@@ -214,7 +214,7 @@ module Gem
 
           fail Error::NoSuchGem, "Could not find #{name} on rubygems.org" unless version
           Gem::Checkout.logger.debug "Found info matching gem version #{@version}"
-          OpenStruct.new(versions.first)
+          OpenStruct.new(version)
         end
 
         private

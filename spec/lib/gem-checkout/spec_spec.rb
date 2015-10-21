@@ -45,9 +45,17 @@ RSpec.describe Gem::Checkout::Spec::Remote do
   let(:versions_data) do
     [
       {
+        "number" => "2.0.0",
+        "metadata" => { 'bar' => 'bar' },
+      },
+      {
         "number" => "1.2.3",
         "metadata" => { 'foo' => 'baz' },
-      }
+      },
+      {
+        "number" => "0.0.5",
+        "metadata" => { 'baz' => 'baz' },
+      },
     ]
   end
 
