@@ -28,20 +28,20 @@ Proof of concept right now, so check or open issues and/or PRs for improvements.
 Options:
 
 ```
--d LEVEL
-```
-sets the debug level, where 0=debug, 1=warn, and so on...
-
-```
--v, --version VERSION
+-d LEVEL # sets debug level, where 0=debug, 1=warn, and so on...
 ```
 
-The version of the gem to you want to checkout sources for.
+```
+-v, --version VERSION # gem version to you want the sources for.
+```
+
 (If you don't provide this option, the latest version will be used).
 
-## Troubleshooting
+```
+-s, --verify # compare gem built from sources with released version
+```
 
-Run with the `-d 0` option to see what's going on.
+(If it's identical, you can assume the released gem was build from these exact chechecked out sources).
 
 ## FAQ
 
