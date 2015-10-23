@@ -36,8 +36,7 @@ sets the debug level, where 0=debug, 1=warn, and so on...
 -v, --version VERSION
 ```
 
-The version of the gem to you want to hack on - the repo and revision will be discovered.
-
+The version of the gem to you want to checkout sources for.
 (If you don't provide this option, the latest version will be used).
 
 ## Troubleshooting
