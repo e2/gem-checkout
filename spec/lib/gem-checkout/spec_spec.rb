@@ -150,7 +150,6 @@ RSpec.describe Gem::Checkout::Spec::Local::Metadata do
   end
 end
 
-
 RSpec.describe Gem::Checkout::Spec::Local do
   let(:name) { 'foo' }
   let(:version) { '1.2.3' }
@@ -201,6 +200,16 @@ RSpec.describe Gem::Checkout::Spec::Local do
 
     it "returns the metadata" do
       expect(subject.alternative).to be(metadata)
+    end
+  end
+
+  describe "version" do
+    before do
+      allow(spec).to receive(:version).and_return('1.2.3')
+    end
+
+    it "returns a string" do
+      expect(subject.version).to eq('1.2.3')
     end
   end
 end

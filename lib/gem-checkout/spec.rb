@@ -63,7 +63,6 @@ module Gem
         def initialize(name, version, remote)
           @data = find_by_name(name, version)
           @name = name
-          @version = version
           @remote = remote
         end
 
@@ -90,7 +89,7 @@ module Gem
         end
 
         def version
-          read(:version)
+          read(:version).to_s
         end
 
         def alternative

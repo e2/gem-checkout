@@ -2,7 +2,8 @@ require 'gem-checkout/source'
 
 RSpec.describe Gem::Checkout::Source do
   let(:repo) { instance_double(Gem::Checkout::Repository::GitHub) }
-  let(:git_uri) { URI.parse('https://github.com/foo/bar') }
+  let(:git_url) { 'https://github.com/foo/bar' }
+  let(:git_uri) { URI.parse(git_url) }
   let(:ref) { '02198abc98e9b9' }
 
 
@@ -31,8 +32,10 @@ RSpec.describe Gem::Checkout::Source do
       let(:github) { instance_double(Gem::Checkout::Repository::GitHub) }
 
       before do
+        allow(Gem::Checkout::Spec).to receive(:info).with(name, version).and_return(local)
+        allow(local).to receive(:version).and_return(version)
+
         url = 'https://github.com/foo/bar'
-        allow(Gem::Checkout::Spec::Local).to receive(:new).and_return(local)
         allow(local).to receive(:source_code_uri).and_return(nil)
         allow(local).to receive(:source_code_url).and_return(nil)
         allow(local).to receive(:repository_uri).and_return(nil)
@@ -56,6 +59,37 @@ RSpec.describe Gem::Checkout::Source do
 
       it "sets the source_reference" do
         expect(subject.source_reference).to eq(ref)
+      end
+    end
+  end
+
+  describe '#version' do
+    before do
+      allow(local).to receive(:source_code_uri).and_return(git_url)
+      allow(local).to receive(:source_reference).and_return(ref)
+    end
+
+    context "when provided" do
+      before do
+        allow(Gem::Checkout::Spec).to receive(:info).with(name, version).and_return(local)
+        allow(local).to receive(:version).and_return(version)
+      end
+
+      it "matches provided" do
+        expect(subject.version).to eq(version)
+      end
+    end
+
+    context "when not provided" do
+      let(:args) { [name] }
+
+      before do
+        allow(Gem::Checkout::Spec).to receive(:info).with(name, nil).and_return(local)
+        allow(local).to receive(:version).and_return('2.0.0')
+      end
+
+      it "matches latest" do
+        expect(subject.version).to eq('2.0.0')
       end
     end
   end

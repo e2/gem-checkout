@@ -97,9 +97,13 @@ module Gem
         end
       end
 
+      attr_reader :version
+
       def initialize(name, version=nil)
         Gem::Checkout.logger.debug "Gathering info about #{name} (#{version || 'latest'})"
         object = Spec.info(name, version)
+
+        @version = object.version
 
         @name = name
 
