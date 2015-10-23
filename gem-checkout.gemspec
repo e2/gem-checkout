@@ -2,9 +2,11 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+require 'gem-checkout/version'
+
 Gem::Specification.new do |s|
   s.name = "gem-checkout"
-  s.version = '0.0.5'
+  s.version = Gem::Checkout::VERSION
   s.authors = ["Cezary Baginski"]
   s.email = ["cezary@chronomantic.net"]
 
